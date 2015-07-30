@@ -58,6 +58,9 @@
 </div><!--header-->
 <div class="contents">
 
+<p>Boost test_tree_visitor implementation which traverses the test tree and generates an xml file of available tests.  
+ <a href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for etas::boost::unit_test::CBoostTestTreeLister:</div>
@@ -65,7 +68,7 @@ Inheritance diagram for etas::boost::unit_test::CBoostTestTreeLister:</div>
  <div class="center">
   <img src="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.png" usemap="#etas::boost::unit_test::CBoostTestTreeLister_map" alt=""/>
   <map id="etas::boost::unit_test::CBoostTestTreeLister_map" name="etas::boost::unit_test::CBoostTestTreeLister_map">
-<area href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_debug_lister.html" alt="etas::boost::unit_test::CBoostTestTreeDebugLister" shape="rect" coords="148,112,434,136"/>
+<area href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_debug_lister.html" title="CBoostTestTreeLister extension which additionally serializes debug information for test cases..." alt="etas::boost::unit_test::CBoostTestTreeDebugLister" shape="rect" coords="148,112,434,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -77,38 +80,52 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a623449ec40c83b72994adb7dd6c3fb89"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#a623449ec40c83b72994adb7dd6c3fb89">CBoostTestTreeLister</a> (const std::string &amp;source)</td></tr>
+<tr class="memdesc:a623449ec40c83b72994adb7dd6c3fb89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a623449ec40c83b72994adb7dd6c3fb89">More...</a><br /></td></tr>
 <tr class="separator:a623449ec40c83b72994adb7dd6c3fb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35c94a8fb701535b6a7e05787184a4da"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#a35c94a8fb701535b6a7e05787184a4da">CBoostTestTreeLister</a> (const std::string &amp;source, std::ostream *out)</td></tr>
+<tr class="memdesc:a35c94a8fb701535b6a7e05787184a4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <a href="#a35c94a8fb701535b6a7e05787184a4da">More...</a><br /></td></tr>
 <tr class="separator:a35c94a8fb701535b6a7e05787184a4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab80769545463ed50f2e598ae9aeabf30"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#ab80769545463ed50f2e598ae9aeabf30">GetSource</a> () const </td></tr>
+<tr class="memdesc:ab80769545463ed50f2e598ae9aeabf30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the source module file path which contains the boost test framework.  <a href="#ab80769545463ed50f2e598ae9aeabf30">More...</a><br /></td></tr>
 <tr class="separator:ab80769545463ed50f2e598ae9aeabf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af14174db76e15b65551fb2a4b621f2fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#af14174db76e15b65551fb2a4b621f2fe">GetPrettyPrint</a> () const </td></tr>
+<tr class="memdesc:af14174db76e15b65551fb2a4b621f2fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">States whether or not xml pretty printing is enabled.  <a href="#af14174db76e15b65551fb2a4b621f2fe">More...</a><br /></td></tr>
 <tr class="separator:af14174db76e15b65551fb2a4b621f2fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dd806ba4e1acb357c43e07d5bb89ff7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#a0dd806ba4e1acb357c43e07d5bb89ff7">SetPrettyPrint</a> (bool prettyPrint)</td></tr>
+<tr class="memdesc:a0dd806ba4e1acb357c43e07d5bb89ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether or not xml pretty printing is enabled.  <a href="#a0dd806ba4e1acb357c43e07d5bb89ff7">More...</a><br /></td></tr>
 <tr class="separator:a0dd806ba4e1acb357c43e07d5bb89ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf0f9ee88cc64ddfdd280389b9887031"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#aaf0f9ee88cc64ddfdd280389b9887031">~CBoostTestTreeLister</a> ()</td></tr>
+<tr class="memdesc:aaf0f9ee88cc64ddfdd280389b9887031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="#aaf0f9ee88cc64ddfdd280389b9887031">More...</a><br /></td></tr>
 <tr class="separator:aaf0f9ee88cc64ddfdd280389b9887031"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc5223c41a4dc8d6829a64fc6191ba5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#a6cc5223c41a4dc8d6829a64fc6191ba5">visit</a> (const ::boost::unit_test::test_case &amp;testCase) override</td></tr>
+<tr class="memdesc:a6cc5223c41a4dc8d6829a64fc6191ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visitor method for a Boost test case.  <a href="#a6cc5223c41a4dc8d6829a64fc6191ba5">More...</a><br /></td></tr>
 <tr class="separator:a6cc5223c41a4dc8d6829a64fc6191ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed494af643214740015582f34f5582fb"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#aed494af643214740015582f34f5582fb">test_suite_start</a> (const ::boost::unit_test::test_suite &amp;testSuite) override</td></tr>
+<tr class="memdesc:aed494af643214740015582f34f5582fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visitor method for the start of a Boost test suite.  <a href="#aed494af643214740015582f34f5582fb">More...</a><br /></td></tr>
 <tr class="separator:aed494af643214740015582f34f5582fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae31da4b259bfca452b416c28bb782049"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#ae31da4b259bfca452b416c28bb782049">test_suite_finish</a> (const ::boost::unit_test::test_suite &amp;testSuite) override</td></tr>
+<tr class="memdesc:ae31da4b259bfca452b416c28bb782049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Visitor method for the end of a Boost test suite.  <a href="#ae31da4b259bfca452b416c28bb782049">More...</a><br /></td></tr>
 <tr class="separator:ae31da4b259bfca452b416c28bb782049"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9aee95c16e0f01923c6906290936ddf"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#ab9aee95c16e0f01923c6906290936ddf">WriteHeader</a> ()</td></tr>
+<tr class="memdesc:ab9aee95c16e0f01923c6906290936ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the xml declaration and preamble.  <a href="#ab9aee95c16e0f01923c6906290936ddf">More...</a><br /></td></tr>
 <tr class="separator:ab9aee95c16e0f01923c6906290936ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f8d46de284d8b02361257458564377d"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#a2f8d46de284d8b02361257458564377d">WriteTrailer</a> ()</td></tr>
+<tr class="memdesc:a2f8d46de284d8b02361257458564377d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the closing xml elements for the file.  <a href="#a2f8d46de284d8b02361257458564377d">More...</a><br /></td></tr>
 <tr class="separator:a2f8d46de284d8b02361257458564377d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a7cdf422a6d641f77998da7b7eacc495e"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#a7cdf422a6d641f77998da7b7eacc495e">Tab</a> ()</td></tr>
+<tr class="memdesc:a7cdf422a6d641f77998da7b7eacc495e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Properly sets up tabulation characters if pretty-printing is enabled.  <a href="#a7cdf422a6d641f77998da7b7eacc495e">More...</a><br /></td></tr>
 <tr class="separator:a7cdf422a6d641f77998da7b7eacc495e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d52267833556f98fa32ff001da77585"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_lister.html#a4d52267833556f98fa32ff001da77585">Out</a> ()</td></tr>
+<tr class="memdesc:a4d52267833556f98fa32ff001da77585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter for the current output stream.  <a href="#a4d52267833556f98fa32ff001da77585">More...</a><br /></td></tr>
 <tr class="separator:a4d52267833556f98fa32ff001da77585"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00017">17</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
+<div class="textblock"><p>Boost test_tree_visitor implementation which traverses the test tree and generates an xml file of available tests. </p>
+
+<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00021">21</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="a40fe966d0b1af35dce42d6b35869b103"></a>
 <div class="memitem">
@@ -120,7 +137,7 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00022">22</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
+<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00026">26</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
 
 </div>
 </div>
@@ -146,6 +163,15 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Constructor. </p>
+<p>Output stream defaults to std::out.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source</td><td>file-path to the exe/dll module which contains a Boost test framework </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00041">41</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
 
@@ -175,6 +201,15 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">source</td><td>file-path to the exe/dll module which contains a Boost test framework </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>a pointer to the output stream which will be used to output the xml result </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00050">50</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
 
 </div>
@@ -199,6 +234,8 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Destructor. </p>
 
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00058">58</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
 
@@ -226,7 +263,9 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00032">32</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
+<p>States whether or not xml pretty printing is enabled. </p>
+
+<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00054">54</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
 
 </div>
 </div>
@@ -251,7 +290,9 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00027">27</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
+<p>Getter for the source module file path which contains the boost test framework. </p>
+
+<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00046">46</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
 
 </div>
 </div>
@@ -275,6 +316,9 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Getter for the current output stream. </p>
+<dl class="section return"><dt>Returns</dt><dd>the output stream which we are writing to </dd></dl>
 
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00111">111</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
 
@@ -302,7 +346,15 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00037">37</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
+<p>Sets whether or not xml pretty printing is enabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">prettyPrint</td><td>true to enable pretty print; false to disable pretty printing </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8h_source.html#l00064">64</a> of file <a class="el" href="_c_boost_test_tree_lister_8h_source.html">CBoostTestTreeLister.h</a>.</p>
 
 </div>
 </div>
@@ -326,6 +378,9 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Properly sets up tabulation characters if pretty-printing is enabled. </p>
+<dl class="section return"><dt>Returns</dt><dd>the output stream which we are writing to </dd></dl>
 
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00098">98</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
 
@@ -352,6 +407,8 @@ Protected Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Visitor method for the end of a Boost test suite. </p>
 
 <p>Reimplemented in <a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_debug_lister.html#a8fb272ca950adae9def334a15a0741a4">etas::boost::unit_test::CBoostTestTreeDebugLister</a>.</p>
 
@@ -381,6 +438,8 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Visitor method for the start of a Boost test suite. </p>
+
 <p>Reimplemented in <a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_debug_lister.html#a5d9df855aa3d41667c747e2847d13e59">etas::boost::unit_test::CBoostTestTreeDebugLister</a>.</p>
 
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00067">67</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
@@ -409,6 +468,9 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Visitor method for a Boost test case. </p>
+<p>Describes the test is an xml element. </p>
+
 <p>Reimplemented in <a class="el" href="classetas_1_1boost_1_1unit__test_1_1_c_boost_test_tree_debug_lister.html#a00455794d0067e22ab8a850717c089c2">etas::boost::unit_test::CBoostTestTreeDebugLister</a>.</p>
 
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00062">62</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
@@ -428,6 +490,9 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Writes the xml declaration and preamble. </p>
+<dl class="section return"><dt>Returns</dt><dd>the output stream which we are writing to </dd></dl>
+
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00081">81</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
 
 </div>
@@ -445,6 +510,9 @@ Protected Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Writes the closing xml elements for the file. </p>
+<dl class="section return"><dt>Returns</dt><dd>the output stream which we are writing to </dd></dl>
+
 <p>Definition at line <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html#l00091">91</a> of file <a class="el" href="_c_boost_test_tree_lister_8cpp_source.html">CBoostTestTreeLister.cpp</a>.</p>
 
 </div>
@@ -456,7 +524,7 @@ Protected Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jul 29 2015 15:49:20 for Boost External Test Runner by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 30 2015 11:30:52 for Boost External Test Runner by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
