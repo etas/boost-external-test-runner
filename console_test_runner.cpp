@@ -349,7 +349,7 @@ int ListTests(const cla::parser& P)
 *
 *   @par --init
 *    used to define the name of the initialization function to call, which by default is the Boost UTF supplied <b>init_unit_test</b> function. The initialization function
-*   needs to be exported in a <a href="http://www.tldp.org/HOWTO/C++-dlopen/thesolution.html">C style interfarce</a> otherwise the Boost External Test Runner will fail to find the entry point of the method.
+*   needs to be exported in a <a href="http://www.tldp.org/HOWTO/C++-dlopen/thesolution.html">C style interface</a> otherwise the Boost External Test Runner will fail to find the entry point of the method.
 *
 *   @par --test
 *   used to define the path and the name of the DLL containing the Boost UTF tests.
@@ -447,6 +447,18 @@ int ListTests(const cla::parser& P)
 
 #include <boost/test/unit_test.hpp>
 ~~~~~~~~~~~~~
+*/
+/*!
+  \page License
+  
+##  Boost External Test Runner License
+  
+Boost External Test Runner is released under the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License - Version 1.0 - August 17th, 2003</a>.
+
+##  Third party software credits
+
+Boost External Test Runner makes use of a source file, namely console_test_runner.cpp, copyrighted by Gennadiy Rozental 2005 under the Boost Software License Version 1.0 which is supplied as part of the Boost sources under path libs\test\tools\console_test_runner\test\test_runner_test.cpp
+
 */
 
 /**
