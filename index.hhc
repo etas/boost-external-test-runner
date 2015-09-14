@@ -5,6 +5,7 @@
 </OBJECT>
 <UL>
 <LI><OBJECT type="text/sitemap"><param name="Name" value="External Boost Test Runner Usage"><param name="Local" value="index.html"><param name="ImageNumber" value="11"></OBJECT>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="License"><param name="Local" value="_license.html"><param name="ImageNumber" value="11"></OBJECT>
 <LI><OBJECT type="text/sitemap"><param name="Name" value="Namespaces"><param name="ImageNumber" value="1"></OBJECT>
   <UL>
   <LI><OBJECT type="text/sitemap"><param name="Name" value="Namespace List"><param name="Local" value="namespaces.html"><param name="ImageNumber" value="1"></OBJECT>
@@ -165,6 +166,7 @@
     <LI><OBJECT type="text/sitemap"><param name="Name" value="Macros"><param name="Local" value="globals_defs.html"><param name="ImageNumber" value="11"></OBJECT>
     </UL>
   </UL>
+<LI><OBJECT type="text/sitemap"><param name="Name" value="License"><param name="Local" value="_license.html"><param name="ImageNumber" value="1"></OBJECT>
 </UL>
 </BODY>
 </HTML>
