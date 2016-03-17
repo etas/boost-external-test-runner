@@ -21,6 +21,8 @@
 #include <boost/test/utils/runtime/cla/named_parameter.hpp>
 #include <boost/test/utils/runtime/cla/parser.hpp>
 
+#include <boost/test/tree/traverse.hpp>
+
 //end suppression of warnings related to 3rd party files
 #pragma warning ( default: 6031 )
 #pragma warning ( default: 6011 )

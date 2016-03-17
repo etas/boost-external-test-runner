@@ -23,19 +23,19 @@ class CBoostTestTreeDebugLister : public CBoostTestTreeLister
 public:
     typedef CBoostTestTreeLister TBase;
 
-	/**
-	 * @brief Constructor. Output stream defaults to std::out.
-	 *
-	 * @param[in] source file-path to the exe/dll module which contains a Boost test framework
-	 */
+    /**
+     * @brief Constructor. Output stream defaults to std::out.
+     *
+     * @param[in] source file-path to the exe/dll module which contains a Boost test framework
+     */
     explicit CBoostTestTreeDebugLister(const std::string& source);
-	
-	/**
-	 * @brief Constructor
-	 *
-	 * @param[in] source file-path to the exe/dll module which contains a Boost test framework
-	 * @param[in] out a pointer to the output stream which will be used to output the xml result
-	 */
+    
+    /**
+     * @brief Constructor
+     *
+     * @param[in] source file-path to the exe/dll module which contains a Boost test framework
+     * @param[in] out a pointer to the output stream which will be used to output the xml result
+     */
     CBoostTestTreeDebugLister(const std::string& source, std::ostream* out);
 
     virtual ~CBoostTestTreeDebugLister();
@@ -45,25 +45,25 @@ public:
     virtual bool test_suite_start(const ::boost::unit_test::test_suite& testSuite) override;
     virtual void test_suite_finish(const ::boost::unit_test::test_suite& testSuite) override;
 
-	/**
-	 * @brief States whether or not debug information is available for the requested source module
-	 */
+    /**
+     * @brief States whether or not debug information is available for the requested source module
+     */
     const bool IsDebugInfoAvailable() const
     {
         return m_dllBase > 0;
     };
 
 private:
-	/**
-	 * @brief Common initialisation logic shared between constructors
-	 */
+    /**
+     * @brief Common initialisation logic shared between constructors
+     */
     void Init();
-	
-	/**
-	 * @brief States whether the provided test suite is the master test suite
-	 * @param[in] testSuite the test suite to test
-	 * @brief States whether the provided test suite is the master test suite
-	 */
+    
+    /**
+     * @brief States whether the provided test suite is the master test suite
+     * @param[in] testSuite the test suite to test
+     * @brief States whether the provided test suite is the master test suite
+     */
     bool IsMasterTestSuite(const ::boost::unit_test::test_suite& testSuite) const;
 
 private:
