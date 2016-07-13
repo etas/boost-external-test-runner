@@ -18,7 +18,7 @@
 #include <boost/test/unit_test.hpp>
 
 // Boost.Runtime.Param
-#include <boost/test/utils/runtime/cla/named_parameter.hpp>
+//#include <boost/test/utils/runtime/cla/named_parameter.hpp>
 #include <boost/test/utils/runtime/cla/parser.hpp>
 
 #include <boost/test/tree/traverse.hpp>
@@ -178,8 +178,16 @@ error()
 
 //____________________________________________________________________________//
 
-static std::string test_lib_name;
-static std::string init_func_name("init_unit_test");
+/**
+* Structure to contain the command line arguments passed
+*/
+struct SArguments
+{
+    std::string test_lib_name;
+    std::string init_func_name;
+    std::string list_name;
+    std::string list_debug_name;
+} g_args;
 
 dyn_lib::handle test_lib_handle;
 
@@ -199,13 +207,13 @@ bool load_test_lib()
 {
     init_func_ptr init_func;
 
-    test_lib_handle = dyn_lib::open(test_lib_name);    //load the library via the relevant OS API
+    test_lib_handle = dyn_lib::open(g_args.test_lib_name);    //load the library via the relevant OS API
 
     if (!test_lib_handle)
         throw std::logic_error(std::string("Fail to load test library: ")
                                .append(dyn_lib::error()));
 
-    init_func = dyn_lib::locate_symbol<init_func_ptr>(test_lib_handle, init_func_name);    //locate the initialization method inside the library
+    init_func = dyn_lib::locate_symbol<init_func_ptr>(test_lib_handle, g_args.init_func_name);    //locate the initialization method inside the library
 
     /**
     @note It has been decided to suppress that the raise of an exception in case the initialization method is not method.  At any rate the user
@@ -226,13 +234,12 @@ bool load_test_lib()
 /**
 *   @brief Generates an object of type ofstream so as to write to file
 *
-*   @param [in]  P   Reference to the object handling the command line parsing
-*   @param [in]  arg Full filepath where to write the XML file to
+*   @param [in]  args       structure containing the parsed command line arguments
 */
-std::unique_ptr<std::ofstream> GetListOutputStream(const cla::parser& P, const std::string& arg)
+std::unique_ptr<std::ofstream> GetListOutputStream(const SArguments& args)
 {
     std::string listOut;
-    assign_op(listOut, P.get(arg), 0);
+    listOut = (args.list_name.empty()) ? args.list_debug_name : args.list_name;
 
     if (!listOut.empty())
     {
@@ -249,16 +256,16 @@ typedef std::unique_ptr<::etas::boost::unit_test::CBoostTestTreeLister> TBoostTe
 /*
 *   @brief Factory method return the correct type of test enumerator(lister) depending on the verbosity required
 *
-*   @param [in]  arg      string containing either either "list" or "list-debug" on which the factory method will use to determine the type of lister to return
-*   @param [in]  dll      library path containing the Boost UTF tests
-*   @param [in]  out      pointer to an output stream class which the test enumerator will use to output the report
-*   @return      object   of either type CBoostTestTreeLister or CBoostTestTreeDebugLister depending on the verbosity required as supplied by argument arg
+*   @param [in]  args       structure containing the parsed command line arguments
+*   @param [in]  dll        library path containing the Boost UTF tests
+*   @param [in]  out        pointer to an output stream class which the test enumerator will use to output the report
+*   @return      object     of either type CBoostTestTreeLister or CBoostTestTreeDebugLister depending on the verbosity required as supplied by argument arg
 */
-TBoostTestTreeListerPtr GetTestTreeLister(const std::string& arg, const std::string dll, std::ostream* out = nullptr)
+TBoostTestTreeListerPtr GetTestTreeLister(const SArguments& args, const std::string dll, std::ostream* out = nullptr)
 {
     out = (out == nullptr) ? &std::cout : out;
 
-    if (arg == "list")
+    if (args.list_debug_name.empty())
     {
         return TBoostTestTreeListerPtr(new ::etas::boost::unit_test::CBoostTestTreeLister(dll, out)); //less detail
     }
@@ -295,17 +302,15 @@ std::ostream& WriteError(std::ostream& out, const std::string& dll, const std::s
 /**
 *   @brief Method handling the enumeration of the tests.
 *
-*   @param [in]  P   Reference to the object handling the command line parsing
-*   @return          Returns either boost::exit_success or boost::exit_failure
+*   @param [in]  args       structure containing the parsed command line arguments
+*   @return                 Returns either boost::exit_success or boost::exit_failure
 */
-int ListTests(const cla::parser& P)
+int ListTests(const SArguments& args)
 {
     int res = ::boost::exit_success;
 
-    std::string arg = (P["list"]) ? "list" : "list-debug";
-
-    std::unique_ptr<std::ofstream> out = GetListOutputStream(P, arg);
-    TBoostTestTreeListerPtr lister = GetTestTreeLister(arg, test_lib_name, out.get());
+    std::unique_ptr<std::ofstream> out = GetListOutputStream(args);
+    TBoostTestTreeListerPtr lister = GetTestTreeLister(args, args.test_lib_name, out.get());
 
     if (lister != nullptr)
     {
@@ -319,18 +324,21 @@ int ListTests(const cla::parser& P)
             */
             if (load_test_lib())
             {
-                //if the loading the library was successfull, then we proceed in enumerating the tests.
-                ::boost::unit_test::traverse_test_tree(::boost::unit_test::framework::master_test_suite(), *lister);
+                //if the loading the library was successful, then we proceed in enumerating the tests.
+
+                //NOTE: the 3rd parameter in traverse_test_tree MUST be set to true, due to a change in semantics
+                //in boost 1.61
+                ::boost::unit_test::traverse_test_tree(::boost::unit_test::framework::master_test_suite(), *lister, true);
             }
         }
         catch (std::exception& ex)
         {
-            WriteError(listing, test_lib_name, ((ex.what() == nullptr) ? std::string() : ex.what()));
+            WriteError(listing, args.test_lib_name, ((ex.what() == nullptr) ? std::string() : ex.what()));
             res = ::boost::exit_failure;
         }
         catch (...)
         {
-            WriteError(listing, test_lib_name);
+            WriteError(listing, args.test_lib_name);
             res = ::boost::exit_failure;
         }
 
@@ -452,9 +460,9 @@ int ListTests(const cla::parser& P)
 */
 /*!
   \page License
-  
+
 ##  Boost External Test Runner License
-  
+
 Boost External Test Runner is released under the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License - Version 1.0 - August 17th, 2003</a>.
 
 ##  Third party software credits
@@ -464,45 +472,110 @@ Boost External Test Runner makes use of a source file, namely console_test_runne
 */
 
 /**
+*   @brief Function used to parse the command line arguments
+*
+*   @param [in,out] argv_   copy of the command line arguments passed. the function will also remove any external test runner arguments found
+*   @param [in,out] args    structure which will contain the parsed command line arguments
+*   @return                 indicates whether parsing was successful
+*/
+
+bool ParseArguments(std::vector<char*>& argv, SArguments& args)
+{
+    args.init_func_name = "";
+    args.list_name = "";
+    args.list_debug_name = "";
+
+    //start parsing the command line arguments for the --test argument
+    auto it = std::find_if(argv.begin(), argv.end(), [](char* input)
+    {
+        return (strcmp(input, "--test") == 0);
+    });
+
+    if (it == argv.end())
+    {
+        //if it is not found, return false, since this is a compulsory argument
+        std::cout << "The required argument 'test' was not found" << std::endl;
+        return false;
+    }
+
+    //otherwise, set test_lib_name in the args struct and remove --test and its value from the command line arguments
+    args.test_lib_name = *(it + 1);
+    argv.erase(it, it + 2);
+
+    //a similar procedure is applied for the other arguments, however if they are not found, the function does not
+    //return, since they are optional.
+    it = std::find_if(argv.begin(), argv.end(), [](char* input)
+    {
+        return (strcmp(input, "--init") == 0);
+    });
+
+    if (it != argv.end())
+    {
+        args.init_func_name = *(it + 1);
+        argv.erase(it, it + 2);
+    }
+
+    it = std::find_if(argv.begin(), argv.end(), [](char* input)
+    {
+        return (strcmp(input, "--list") == 0);
+    });
+
+    if (it != argv.end())
+    {
+        args.list_name = *(it + 1);
+        argv.erase(it, it + 2);
+    }
+
+    it = std::find_if(argv.begin(), argv.end(), [](char* input)
+    {
+        return (strcmp(input, "--list-debug") == 0);
+    });
+
+    if (it != argv.end())
+    {
+        args.list_debug_name = *(it + 1);
+        argv.erase(it, it + 2);
+    }
+
+    return true;
+}
+
+
+/**
 *   @brief Entry point of the program
 *
 *   @param [in]  argc   argument count
 *   @param [in]  argv   argument vector
 *   @return             Indicates execution failure or success
 */
+
 int main(int argc, char* argv[])
 {
     try
     {
-        cla::parser P;
+        //create a copy of the argv values. this is the copy that will be parsed. during parsing, any arguments
+        //which we are expecting (ex: test, list-debug...) are removed from argv_. This is done so that, should
+        //the tests need to be run, argv_ is passed to ::boost::unit_test::unit_test_main
+        std::vector<char*> argv_(argv, (argv + argc));
 
-        P - cla::ignore_mismatch
-                << cla::named_parameter<rt::cstring>("test") - (cla::prefix = "--")
-                << cla::named_parameter<rt::cstring>("list") - (cla::prefix = "--", cla::optional)
-                << cla::named_parameter<rt::cstring>("list-debug") - (cla::prefix = "--", cla::optional)
-                << cla::named_parameter<rt::cstring>("init") - (cla::prefix = "--", cla::optional);
-
-        P.parse(argc, argv);
-
-        assign_op(test_lib_name, P.get("test"), 0);
-
-        if (P["init"])
+        //parsing of the arguments
+        if (!ParseArguments(argv_, g_args))
         {
-            assign_op(init_func_name, P.get("init"), 0);
+            return -1;
         }
 
         int res = ::boost::exit_success;
 
         //if the list or the list-debug command line directives are present then just enumerate tests,
         //otherwise execute the tests according to the additional Boost UTF specific  command line options supplied
-        if (P["list"] || P["list-debug"])
+        if (!g_args.list_name.empty() || !g_args.list_debug_name.empty())
         {
-            res = ListTests(P);
+            res = ListTests(g_args);
         }
         else
         {
             //run tests
-            res = ::boost::unit_test::unit_test_main(&load_test_lib, argc, argv);
+            res = ::boost::unit_test::unit_test_main(&load_test_lib, argv_.size(), argv_.data());
         }
 
         ::boost::unit_test::framework::clear();
@@ -510,9 +583,9 @@ int main(int argc, char* argv[])
 
         return res;
     }
-    catch (rt::logic_error const& ex)
+    catch (const rt::param_error& ex)
     {
-        std::cout << "Fail to parse command line arguments: " << ex.msg() << std::endl;
+        std::cout << "Fail to parse command line arguments: " << ex.msg << std::endl;
         return -1;
     }
 }

@@ -23,9 +23,10 @@ namespace unit_test
 namespace
 {
 
-::boost::unit_test::attr_value attr_value()
+// Utility function which is used to simply avoid writing '::boost::unit_test::attr_value()'
+::boost::unit_test::utils::attr_value attr_value()
 {
-    return ::boost::unit_test::attr_value();
+    return ::boost::unit_test::utils::attr_value();
 };
 
 struct SSourceInfo
